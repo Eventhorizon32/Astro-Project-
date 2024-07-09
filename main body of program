@@ -1,0 +1,68 @@
+def calculate_focal_ratio():
+    while True:
+        try:
+            focal_length = int(input("Enter focal length: "))
+            if focal_length <= 0:
+                print("Not in range, try again")
+                continue
+
+            lens_diameter = int(input("Enter lens diameter: "))
+            if lens_diameter <= 0:
+                print("Not in range, try again")
+                continue
+
+            focal_ratio = focal_length / lens_diameter
+            print("Focal ratio is", focal_ratio)
+            break  # Exit the loop after successful calculation
+        except ValueError:
+            print("Invalid input, please enter numeric values.")
+
+def calculate_light_gathering_power():
+    while True:
+        try:
+            diameter1 = float(input("Enter the diameter of the first telescope (in mm): "))
+            diameter2 = float(input("Enter the diameter of the second telescope (in mm): "))
+            if diameter1 <= 0 or diameter2 <= 0:
+                print("Not in range, try again")
+                continue
+
+            power_ratio = (diameter1 / diameter2) ** 2
+            print(f"Light gathering power ratio is {power_ratio:.2f}")
+            break  # Exit the loop after successful calculation
+        except ValueError:
+            print("Invalid input, please enter numeric values.")
+
+def menu():
+    print("\nAstrophysics Calculations")
+    print("1. Calculate Focal Ratio")
+    print("2. Calculate Light Gathering Power")
+    print("3. Exit")
+
+def continue_prompt():
+    while True:
+        response = input("Do you want to perform another calculation? (yes/no): ").strip().lower()
+        if response in ('yes', 'no'):
+            return response == 'yes'
+        print("Invalid input. Please enter 'yes' or 'no'.")
+
+def run_program():
+    while True:
+        menu()
+        choice = input("Enter your choice (1/2/3): ").strip()
+        if choice == '1':
+            calculate_focal_ratio()
+        elif choice == '2':
+            calculate_light_gathering_power()
+        elif choice == '3':
+            print("Thank you for using the program. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please select 1, 2, or 3.")
+            continue
+
+        if not continue_prompt():
+            print("Thank you for using the program. Goodbye!")
+            break
+
+# Run the program
+run_program()
