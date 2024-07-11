@@ -1,3 +1,5 @@
+import math
+
 def calculate_focal_ratio():
     while True:
         try:
@@ -32,11 +34,30 @@ def calculate_light_gathering_power():
         except ValueError:
             print("Invalid input, please enter numeric values.")
 
+def rising_side_of_the_star():
+    while True:
+        try:
+            φ = int(input("Enter the φ: "))
+            if φ < 0:
+                print("Not in range, try again")
+                continue
+            Δ = int(input("Enter the Δ: "))
+            if Δ < 0:
+                print("Not in range, try again")
+                continue
+
+            rising_side_of_the_star = math.sin(math.radians(φ)) / math.sin(math.radians(Δ))
+            print("Rising side of the star is:", rising_side_of_the_star)
+            break  # Exit the loop after successful calculation
+        except ValueError:
+            print("Invalid input, please enter numeric values.")
+
 def menu():
     print("\nAstrophysics Calculations")
     print("1. Calculate Focal Ratio")
     print("2. Calculate Light Gathering Power")
-    print("3. Exit")
+    print("3. Rising Side of the Star")
+    print("4. Exit")
 
 def continue_prompt():
     while True:
@@ -48,16 +69,18 @@ def continue_prompt():
 def run_program():
     while True:
         menu()
-        choice = input("Enter your choice (1/2/3): ").strip()
+        choice = input("Enter your choice (1/2/3/4): ").strip()
         if choice == '1':
             calculate_focal_ratio()
         elif choice == '2':
             calculate_light_gathering_power()
         elif choice == '3':
+            rising_side_of_the_star()
+        elif choice == '4':
             print("Thank you for using the program. Goodbye!")
             break
         else:
-            print("Invalid choice, please select 1, 2, or 3.")
+            print("Invalid choice, please select 1, 2, 3, or 4.")
             continue
 
         if not continue_prompt():
