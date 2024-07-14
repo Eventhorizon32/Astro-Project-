@@ -1,0 +1,17 @@
+def rising_side_of_the_star():
+    while True:
+        try:
+            φ = int(input("Enter the φ: "))
+            if φ < 0:
+                print("Not in range, try again")
+                continue
+            Δ = int(input("Enter the Δ: "))
+            if Δ < 0:
+                print("Not in range, try again")
+                continue
+
+            rising_side_of_the_star = math.sin(math.radians(φ)) / math.sin(math.radians(Δ))
+            print("Rising side of the star is:", rising_side_of_the_star)
+            break  # Exit the loop after successful calculation
+        except ValueError:
+            print("Invalid input, please enter numeric values.")
